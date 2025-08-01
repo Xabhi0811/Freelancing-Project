@@ -3,6 +3,7 @@ const { JsonWebTokenError } = require('jsonwebtoken');
 const userModel = require('../model/user.model');
 const User = require('../model/user.model');
 const { validationResult } = require('express-validator');
+const bcrypt = require('bcrypt')
 
 // Register User
 exports.registerUser = async (req, res) => {
@@ -29,7 +30,7 @@ exports.registerUser = async (req, res) => {
       mobileno
     });
 
-    await newUser.save();
+    await user.save();
     res.status(201).json({ msg: 'User registered successfully' });
   } catch (err) {
     console.error(err);
@@ -74,5 +75,42 @@ exports.loginUser = async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ msg: 'Server error' });
+  }
+};
+
+  exports.changePassword = async (req, res) => {
+  try {
+    const userId = req.user.id; // assuming auth middleware sets req.user
+    const { fullname, email, newPassword } = req.body;
+    
+    console.log("hii abhi")
+    // Validate input
+    if (fullname?.firstname || !email || !newPassword) {
+      return res.status(400).json({ message: 'All fields are required.' });
+    }
+      console.log("hoo2")
+    // Find the user by ID
+    const user = await userModel.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found.' });
+    }
+
+    // Check if username and email match
+    if (fullname.firstname !== firstname || user.email !== email) {
+      return res.status(403).json({ message: 'Username or email does not match.' });
+    }
+
+    // Hash the new password
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    user.password = hashedPassword;
+
+    // Save the updated user
+    await user.save();
+
+    res.status(200).json({ message: 'Password changed successfully.' });
+  } catch (error) {
+    console.error('Change Password Error:', error);
+    res.status(500).json({ message: 'Internal server error.' });
   }
 };
