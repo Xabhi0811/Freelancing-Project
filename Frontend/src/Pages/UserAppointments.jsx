@@ -1,7 +1,9 @@
 import React from 'react';
 
+
 export default function UserAppointments() {
   return (
+      
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
       <div className="w-full max-w-md bg-white p-6 rounded-xl shadow-md">
         <h2 className="text-center text-2xl font-bold text-gray-800 mb-1">Vicky Salon</h2>
@@ -22,17 +24,13 @@ export default function UserAppointments() {
 
         <hr className="my-4" />
 
-        <h3 className="text-lg font-semibold text-gray-800 mb-3 text-center">Upcoming Appointments</h3>
+        <h3 className="text-lg font-semibold text-gray-800 mb-3 text-center">On Going Appointments</h3>
 
         {/* Appointment Cards */}
         <div className="space-y-3 mb-5">
           <div className="bg-gray-200 p-3 rounded-md">
             <p className="text-sm font-semibold">March 2 - <span className="font-normal">12:00</span></p>
             <p className="text-sm text-gray-700">Hairstylist name: Vicky</p>
-          </div>
-          <div className="bg-gray-200 p-3 rounded-md">
-            <p className="text-sm font-semibold">March 2 - <span className="font-normal">12:20</span></p>
-            <p className="text-sm text-gray-700">Hairstylist Name: Jethalal</p>
           </div>
         </div>
 

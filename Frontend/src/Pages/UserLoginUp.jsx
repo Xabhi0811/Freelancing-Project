@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-export default function Signup() {
+export default function login() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
       <div className="w-full max-w-md bg-white p-6 rounded-xl shadow-md">
@@ -13,31 +14,34 @@ export default function Signup() {
               <i className="ri-user-line text-gray-600 text-xl"></i>
             </div>
             <div>
-              <p className="text-sm font-semibold">Client</p>
-              <ul className="text-xs text-gray-600 list-disc ml-4">
-                <li>Name</li>
-                <li>Contact Info</li>
-              </ul>
+              
             </div>
           </div>
           <div className="flex gap-2">
-            <button className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Edit Profile</button>
-            <button className="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded">Log out</button>
+            <h3 className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Style your self </h3>
+            <h3 className="text-xs bg-red-200 text-gray-700 px-2 py-1 rounded"> Bokked it now  </h3>
           </div>
         </div>
 
         <hr className="my-4" />
 
         <h3 className="text-center text-lg font-semibold text-gray-700 mb-4">Appointments Form</h3>
-
+          {/* Firstname and Lastname Inputs */}
         <div className="grid grid-cols-2 gap-2 mb-4">
-          <div className="bg-gray-200 flex items-center justify-center py-2 rounded">
-            <i className="ri-user-line mr-2 text-gray-700"></i>
-            <span className="text-sm text-gray-800">firstname</span>
-          </div>
-          <div className="bg-gray-200 flex items-center justify-center py-2 rounded">
-            <span className="text-sm text-gray-800">lastname</span>
-          </div>
+          <input
+            type="text"
+            
+            onChange={(e) => setFirstname(e.target.value)}
+            placeholder="First Name"
+            className="border border-green-600 px-3 py-2 rounded outline-none"
+          />
+          <input
+            type="text"
+           
+            onChange={(e) => setLastname(e.target.value)}
+            placeholder="Last Name"
+            className="border border-green-600  px-3 py-2 rounded outline-none"
+          />
         </div>
 
         <form className="space-y-3">
@@ -75,12 +79,12 @@ export default function Signup() {
             >
               Conformation
             </button>
-            <button
-              type="button"
+            <Link
+               to='/home'
               className="bg-red-400 text-white px-6 py-2 rounded-md shadow-md hover:bg-red-500"
             >
               Cancel
-            </button>
+            </Link>
           </div>
         </form>
 
